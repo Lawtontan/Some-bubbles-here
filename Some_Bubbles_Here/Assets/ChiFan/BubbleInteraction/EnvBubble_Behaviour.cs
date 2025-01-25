@@ -7,8 +7,10 @@ public class EnvBubble_Behaviour : MonoBehaviour
     public ControlPanel panel;
 
     public Transform parent;
+    public SphereCollider interactionRange;
     public float maxScale;
-    
+    public bool chargingState, attackingState;
+
     private int maximumHealth_envBubble; //more than this will explode
     private int damagePerSecond_envBubble;
     private int defaultShrinkPerSecond_envBubble;
@@ -16,13 +18,10 @@ public class EnvBubble_Behaviour : MonoBehaviour
     private int chargePersecond_envBubble;
     private float attackRange_envBubble;
 
-    private int health;
-    /// <summary>
-    /// 0 for default, 1 for charging, 2 for attacking, 3 for both charging and attacking
-    /// </summary>
-    private bool chargingState, attackingState; 
+    private int health; 
     private float lastChargeTime;
     private float scaleIncreasementPerHeath;
+    private Enemy_Behaviour attackTarget;
     private void Awake()
     {
         InitEnvBubble();
@@ -47,6 +46,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
 
             if (attackingState)
             {
+                AttackTarget();
                 lastChargeTime = Time.time;
             }
             else if (!chargingState)
@@ -55,6 +55,26 @@ public class EnvBubble_Behaviour : MonoBehaviour
                 lastChargeTime = Time.time;
             }
         
+        }
+    }
+
+    public void AttackTarget(){
+        //if enemy died
+        if(attackTarget == null || !attackTarget.parent.gameObject.activeSelf){
+            attackTarget = null;
+            StartCoroutine(TurnOffAttackingIfNoEnemyFound());
+            return;
+        }
+
+        attackTarget.ReceiveDamage(damagePerSecond_envBubble);
+
+        health -= attackShrinkPerSecond_envBubble;
+        float rate = scaleIncreasementPerHeath * attackShrinkPerSecond_envBubble;
+        Vector3 new_scale = new(parent.localScale.x - rate, parent.localScale.y - rate, parent.localScale.z - rate);
+        parent.localScale = new_scale;
+        if (health <= 0)
+        {
+            KillBubble();
         }
     }
 
@@ -108,7 +128,6 @@ public class EnvBubble_Behaviour : MonoBehaviour
         {
             KillBubble();
         }
-        print("damage taken");
     }
 
     public void InitEnvBubble()
@@ -125,6 +144,11 @@ public class EnvBubble_Behaviour : MonoBehaviour
         float rate = scaleIncreasementPerHeath * health;
         Vector3 new_scale = new(parent.localScale.x + rate, parent.localScale.y + rate, parent.localScale.z + rate);
         parent.localScale = new_scale;
+
+        interactionRange.radius = attackRange_envBubble;
+
+        chargingState = false;
+        attackingState = false;
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -134,7 +158,21 @@ public class EnvBubble_Behaviour : MonoBehaviour
         {
             chargingState = true;
         }
+        if(attackTarget == null && other.transform.CompareTag("Enemy")){
+            attackTarget = other.transform.parent.GetComponentInChildren<Enemy_Behaviour>();
+            attackingState = true;
+        }
         //print("trigger enter" + (Time.time - lastChargeTime));
+    }
+
+    private void OnTriggerStay(Collider other) {
+        //previous enemy killed, find new enemy
+        if(attackingState && attackTarget == null){
+            if(other.transform.CompareTag("Enemy")){
+                attackTarget = other.transform.parent.GetComponentInChildren<Enemy_Behaviour>();
+                attackingState = true;
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -144,4 +182,14 @@ public class EnvBubble_Behaviour : MonoBehaviour
             chargingState = false;
         }
     }
+
+    IEnumerator TurnOffAttackingIfNoEnemyFound(){
+        yield return null;
+        yield return new WaitForEndOfFrame();
+
+        if(attackTarget == null){
+            attackingState = false;
+        }
+    }
+    
 }

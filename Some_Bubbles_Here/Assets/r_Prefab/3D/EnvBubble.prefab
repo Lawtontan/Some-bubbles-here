@@ -69,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 0}
   parent: {fileID: 7741719473804302121}
+  interactionRange: {fileID: 1025569492856959065}
   maxScale: 2
 --- !u!54 &4294239143977400753
 Rigidbody:
@@ -144,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1134221651935487167, guid: f3df8a10d72ebb542be0a7da553e0d6c, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: EnvBubble
       objectReference: {fileID: 0}
     - target: {fileID: 3770127783651382447, guid: f3df8a10d72ebb542be0a7da553e0d6c, type: 3}
       propertyPath: m_Center.x

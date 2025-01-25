@@ -5,6 +5,7 @@ using UnityEngine;
 public class BubbleInteraction_Manager : MonoBehaviour
 {
     public ControlPanel panel;
+    public GameObject attackDetection_player;
 
     public EnvBubble_Behaviour envBubble_prefab;
     public Transform attachPoint_bubble;
@@ -27,7 +28,12 @@ public class BubbleInteraction_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //turn off charging state, as if collision set inactive, it ownt detects as exit
+        if(!attackDetection_player.activeSelf){
+            foreach(var activeBubble in BubblePool.activeEnvBubblesParent){
+                activeBubble.GetComponentInChildren<EnvBubble_Behaviour>().chargingState = false;
+            }
+        }
     }
 
     /// <summary>
@@ -79,7 +85,7 @@ public class BubbleInteraction_Manager : MonoBehaviour
     {
 
         SoundPlayer.PlayPlayerSpawnBubble();
-        BubblePool.GetBubble().transform.position = new(2, 2, 2);
+        BubblePool.GetBubble().transform.position = new(Random.Range(-10, 10f), 0, Random.Range(-10, 10f));
     }
 
     IEnumerator MoveObject(Transform trans, Vector3 destination)
@@ -97,12 +103,12 @@ public class BubbleInteraction_Manager : MonoBehaviour
 public static class BubblePool
 {
     public static EnvBubble_Behaviour instance;
-    public static List<Transform> activeEnvBubbles = new();
+    public static List<Transform> activeEnvBubblesParent = new();
     static Queue<EnvBubble_Behaviour> pool = new();
 
     public static void ResetBubble(EnvBubble_Behaviour bubble)
     {
-        activeEnvBubbles.Remove(bubble.parent.transform);
+        activeEnvBubblesParent.Remove(bubble.parent.transform);
         pool.Enqueue(bubble);
 
         bubble.InitEnvBubble();
@@ -123,7 +129,7 @@ public static class BubblePool
         }
 
         op.SetActive(true);
-        activeEnvBubbles.Add(op.transform);
+        activeEnvBubblesParent.Add(op.transform);
         return op;
     }
 }

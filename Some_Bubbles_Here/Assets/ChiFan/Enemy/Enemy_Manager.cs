@@ -21,7 +21,7 @@ public class Enemy_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void RaiseTargetLost(Enemy_Behaviour enemy)
@@ -30,7 +30,7 @@ public class Enemy_Manager : MonoBehaviour
         Transform nearestBubble = null;
 
         float currentNearest = int.MaxValue;
-        foreach(var bubbleParent in BubblePool.activeEnvBubbles)
+        foreach(var bubbleParent in BubblePool.activeEnvBubblesParent)
         {
             float distance = Vector3.Distance(enemy_pos, bubbleParent.position);
             if (distance < currentNearest)
