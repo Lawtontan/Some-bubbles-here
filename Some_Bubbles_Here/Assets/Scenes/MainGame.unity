@@ -938,6 +938,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 993173706716805249, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
   m_PrefabInstance: {fileID: 1283902308}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &625457852 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7522347865969079680, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+  m_PrefabInstance: {fileID: 1283902308}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &648795064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2420,6 +2425,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1195688711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1195688712}
+  m_Layer: 0
+  m_Name: HoldBubblePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1195688712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195688711}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 625457852}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1249787514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2555,7 +2591,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7522347865969079680, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1195688712}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
 --- !u!198 &1283902309 stripped
@@ -3192,10 +3231,13 @@ MonoBehaviour:
   cancel_key: 324
   bubbleInteraction_Manager: {fileID: 768393123}
   uIInteraction_Manager: {fileID: 1249787516}
+  bubbleInteraction: {fileID: 768393123}
   controlPanel: {fileID: 336985997}
   Cam: {fileID: 963194228}
   PlayerPrefab: {fileID: 625457851}
   Attack_range: {fileID: 1637658553}
+  EvBubble: {fileID: 3873971182985418432, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
+  HoldBubblePos: {fileID: 1195688711}
   Bubble_Attack_Effect: {fileID: 1283902309}
 --- !u!1 &1791234818 stripped
 GameObject:
