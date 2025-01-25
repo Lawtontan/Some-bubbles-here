@@ -39,3 +39,20 @@ public class BubbleInteraction_Manager : MonoBehaviour
 
     }
 }
+
+public static class BubblePool
+{
+    static Queue<EnvBubble_Behaviour> pool = new();
+
+    public static void ResetBubble(EnvBubble_Behaviour bubble)
+    {
+        pool.Enqueue(bubble);
+        bubble.parent.transform.localScale = Vector3.one;
+        bubble.parent.gameObject.SetActive(false);
+    }
+
+    public static GameObject GetBubble()
+    {
+        return pool.Dequeue().gameObject;
+    }
+}
