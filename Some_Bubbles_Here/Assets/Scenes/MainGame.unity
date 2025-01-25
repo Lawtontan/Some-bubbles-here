@@ -257,6 +257,7 @@ Transform:
   - {fileID: 379511864}
   - {fileID: 1747633628}
   - {fileID: 1249787515}
+  - {fileID: 966678004}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &336985997
@@ -278,6 +279,7 @@ MonoBehaviour:
   spawnBubble_coolDown_player: 10
   attackRange_player: 5
   movingSpeed_player: 1
+  rotateSpeed_player: 0
   enemy: 2
   heal_enemy: 10
   movingSpeed_enemy: 1
@@ -922,6 +924,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &625457851 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 993173706716805249, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+  m_PrefabInstance: {fileID: 1283902308}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &648795064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,6 +2159,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
+--- !u!1 &966678002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966678004}
+  - component: {fileID: 966678003}
+  m_Layer: 0
+  m_Name: ControlPanels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &966678003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966678002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8e2d76c1523684fab90720ad92ace8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overall: 0
+  gameDuration_overall: 0
+  player: 1
+  pickUpAndDownBubble_coolDown_player: 0
+  spawnBubble_coolDown_player: 0
+  attackRange_player: 0
+  movingSpeed_player: 5
+  rotateSpeed_player: 10
+  enemy: 2
+  heal_enemy: 0
+  movingSpeed_enemy: 0
+  attackRange_enemy: 0
+  minSpawnInterval_enemy: 0
+  maxSpawnInterval_enemy: 0
+  envBubble: 3
+  initialHealth_envBubble: 0
+  maximumHealth_envBubble: 0
+  damagePerSecond_envBubble: 0
+  defaultShrinkPerSecond_envBubble: 0
+  attackShrinkPerSecond_envBubble: 0
+  attackRange_envBubble: 0
+  weather: 4
+  weatherSequence: 00000000000000000000000000000000
+  duration_weather: 0
+  summer: 1
+  bubbleChargeUpMultiplier_summer: 0
+  rain: 2
+  windForce_rain: 0
+  winter: 3
+--- !u!4 &966678004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966678002}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.42402056, y: -7.4448304, z: 8.142358}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 336985996}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &985005418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,9 +2507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5ef6b1b4be628438138b7b41b63207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalAttack_coolDown: 0
-  pickUpAndDownBubble_coolDown: 0
-  spawnBubble_coolDown: 0
 --- !u!1001 &1283902308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2445,6 +2522,10 @@ PrefabInstance:
     - target: {fileID: 993173706716805249, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307537772919377087, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7522347865969079680, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3109,6 +3190,9 @@ MonoBehaviour:
   confirm_key: 0
   cancel_key: 0
   bubbleInteraction_Manager: {fileID: 768393123}
+  controlPanel: {fileID: 966678003}
+  Cam: {fileID: 963194228}
+  PlayerPrefab: {fileID: 625457851}
 --- !u!1 &1792571979
 GameObject:
   m_ObjectHideFlags: 0

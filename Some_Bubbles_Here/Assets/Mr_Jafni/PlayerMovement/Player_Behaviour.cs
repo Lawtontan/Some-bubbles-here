@@ -7,6 +7,11 @@ public class Player_Behaviour : MonoBehaviour
     public KeyCode normalAttack_key, pickUpAndDownBubble_key, spawnBubble_key;
     public KeyCode confirm_key, cancel_key;
     public BubbleInteraction_Manager bubbleInteraction_Manager;
+    public ControlPanel controlPanel;
+    public Transform Cam;
+    public GameObject PlayerPrefab;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +21,7 @@ public class Player_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        PlayerMovement();
     }
 
     /// <summary>
@@ -24,6 +29,32 @@ public class Player_Behaviour : MonoBehaviour
     /// </summary>
     /// <param name="isSetActive"> Enable the player movement? </param>
     public void TogglePlayerMovement(bool isSetActive){
+
+
+
+    }
+
+    //Added By Faruq
+    public void PlayerMovement()
+    {
+        var H = Input.GetAxisRaw("Horizontal");
+        var V = Input.GetAxisRaw("Vertical");
+        Vector3 Dir = new Vector3(H, 0, V).normalized;
+        //anim.SetFloat("V", V, 1f, Time.deltaTime * 10f); //For Animations
+        // anim.SetFloat("H", H, 1f, Time.deltaTime * 10f);
+
+        if (Dir.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(Dir.x, Dir.z) * Mathf.Rad2Deg + Cam.eulerAngles.y;
+            Vector3 MoveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            PlayerPrefab.transform.rotation = Quaternion.Slerp(PlayerPrefab.transform.rotation, Quaternion.LookRotation(MoveDir), controlPanel.rotateSpeed_player * Time.deltaTime);
+
+
+
+            PlayerPrefab.transform.Translate(MoveDir.normalized * controlPanel.movingSpeed_player * Time.deltaTime, Space.World);
+
+        }
+
 
     }
 
