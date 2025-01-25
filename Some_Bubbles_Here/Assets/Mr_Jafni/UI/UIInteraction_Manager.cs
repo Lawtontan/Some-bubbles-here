@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UIInteraction_Manager : MonoBehaviour
 {
-    public float normalAttack_coolDown, pickUpAndDownBubble_coolDown, spawnBubble_coolDown;
     // Start is called before the first frame update
     void Start()
     {

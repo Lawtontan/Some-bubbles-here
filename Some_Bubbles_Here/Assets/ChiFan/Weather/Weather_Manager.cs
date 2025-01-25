@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class Weather_Manager : MonoBehaviour
 {
-    [Tooltip("The sequence of the season change in the game, season start from index 0")]
-    public WeatherType[] weatherSequence;
-    public enum WeatherType{
-        Default,
-        Summer,
-        Rain,
-        Winter
-    }
     // Start is called before the first frame update
     void Start()
     {

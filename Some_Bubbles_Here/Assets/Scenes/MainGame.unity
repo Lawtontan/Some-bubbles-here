@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 6e00f8b39315691449f256740a5cb862, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b5a27fa4b11bfb24cbc6daff3802c229, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -167,13 +167,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalLight: {fileID: 705507994}
-  defaultLight: {r: 1, g: 0.95686275, b: 0.8392157, a: 0}
+  defaultLight: {r: 1, g: 0.8980392, b: 0.7529412, a: 1}
   defaultSky: {fileID: 2100000, guid: 12ccb828343c3405fb94289774b51aad, type: 2}
-  summerLight: {r: 1, g: 0.95686275, b: 0.8392157, a: 0}
+  summerLight: {r: 1, g: 0.69411767, b: 0.40784314, a: 1}
   summerSky: {fileID: 2100000, guid: 6e00f8b39315691449f256740a5cb862, type: 2}
-  rainLight: {r: 1, g: 0.95686275, b: 0.8392157, a: 0}
+  rainLight: {r: 0.43137255, g: 0.61960787, b: 0.8156863, a: 1}
   rainSky: {fileID: 2100000, guid: b5a27fa4b11bfb24cbc6daff3802c229, type: 2}
-  winterLight: {r: 1, g: 0.95686275, b: 0.8392157, a: 0}
+  winterLight: {r: 0.59607846, g: 1, b: 0.92156863, a: 1}
   winterSky: {fileID: 2100000, guid: 7b0f2096b49ccfb4f8b47c8084d650fa, type: 2}
 --- !u!1 &319985939
 GameObject:
@@ -219,7 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6909ac351decf48acaf41835f14d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weatherSequence: 
 --- !u!1 &336985995
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 336985996}
+  - component: {fileID: 336985997}
   m_Layer: 0
   m_Name: ----System----
   m_TagString: Untagged
@@ -259,6 +259,46 @@ Transform:
   - {fileID: 1249787515}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &336985997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336985995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8e2d76c1523684fab90720ad92ace8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overall: 0
+  gameDuration_overall: 100
+  player: 1
+  pickUpAndDownBubble_coolDown_player: 10
+  spawnBubble_coolDown_player: 10
+  attackRange_player: 5
+  movingSpeed_player: 1
+  enemy: 2
+  heal_enemy: 10
+  movingSpeed_enemy: 1
+  attackRange_enemy: 2
+  minSpawnInterval_enemy: 1
+  maxSpawnInterval_enemy: 5
+  envBubble: 3
+  initialHealth_envBubble: 5
+  maximumHealth_envBubble: 10
+  damagePerSecond_envBubble: 1
+  defaultShrinkPerSecond_envBubble: 1
+  attackShrinkPerSecond_envBubble: 2
+  attackRange_envBubble: 5
+  weather: 4
+  weatherSequence: 00000000010000000200000003000000
+  duration_weather: 10
+  summer: 1
+  bubbleChargeUpMultiplier_summer: 1.5
+  rain: 2
+  windForce_rain: 5
+  winter: 3
 --- !u!1 &348290734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1240,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.59607846, g: 1, b: 0.92156863, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -2402,21 +2442,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7522347865969079680, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7522347865969079680, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7522347865969079680, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+    - target: {fileID: 993173706716805249, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7522347865969079680, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.54
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 7522347865969079680, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2424,7 +2456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7522347865969079680, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.76
+      value: -4.26
       objectReference: {fileID: 0}
     - target: {fileID: 7522347865969079680, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2791,19 +2823,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3873971182985418432, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_Name
-      value: EnvBubble (1)
+      value: EnvBubble_1
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.69
+      value: 0.6009831
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.69
+      value: 0.6009831
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.69
+      value: 0.6009831
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2811,7 +2843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.41999996
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3573,19 +3605,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3873971182985418432, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_Name
-      value: EnvBubble
+      value: EnvBubble_0
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.51
+      value: 1.0714054
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.51
+      value: 1.0714054
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.51
+      value: 1.0714054
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3593,7 +3625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.11
       objectReference: {fileID: 0}
     - target: {fileID: 7741719473804302121, guid: d97bf21c232dc3d4d862851f095f4710, type: 3}
       propertyPath: m_LocalPosition.z
