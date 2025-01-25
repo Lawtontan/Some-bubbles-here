@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4294239143977400753}
   m_Layer: 0
   m_Name: Script
-  m_TagString: Untagged
+  m_TagString: EnvBubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 7741719473804302121}
   m_Layer: 0
   m_Name: EnvBubble
-  m_TagString: EnvBubble
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,6 +141,10 @@ PrefabInstance:
     - target: {fileID: 1134221651935487167, guid: f3df8a10d72ebb542be0a7da553e0d6c, type: 3}
       propertyPath: m_Name
       value: EnvBubble_Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 1134221651935487167, guid: f3df8a10d72ebb542be0a7da553e0d6c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3770127783651382447, guid: f3df8a10d72ebb542be0a7da553e0d6c, type: 3}
       propertyPath: m_Center.x

@@ -158,7 +158,7 @@ public class Player_Behaviour : MonoBehaviour
 
     /// <summary>
     /// Toggle the current ability to the given index. 0 for normal atack, 1 for pick up and down bubble, 2 for spawn a bubble
-    /// </summary>
+    /// </summary>i
     /// <param name="index"></param>
     public void ToggleAbility(int index){
 

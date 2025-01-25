@@ -25,17 +25,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
     private float scaleIncreasementPerHeath;
     private void Awake()
     {
-        health = panel.initialHealth_envBubble;
-        maximumHealth_envBubble = panel.maximumHealth_envBubble;
-        damagePerSecond_envBubble = panel.damagePerSecond_envBubble;
-        defaultShrinkPerSecond_envBubble = panel.defaultShrinkPerSecond_envBubble;
-        attackShrinkPerSecond_envBubble = panel.attackShrinkPerSecond_envBubble;
-        chargePersecond_envBubble = panel.chargePerSeocnd_envBubble;
-        attackRange_envBubble = panel.attackRange_envBubble;
-
-        scaleIncreasementPerHeath = (maxScale - parent.localScale.x) / maximumHealth_envBubble;
-        float rate = scaleIncreasementPerHeath * health;
-        Vector3 new_scale = new(parent.localScale.x + rate, parent.localScale.y + rate, parent.localScale.z + rate);
+        InitEnvBubble();
     }
 
     // Start is called before the first frame update
@@ -106,6 +96,35 @@ public class EnvBubble_Behaviour : MonoBehaviour
 
         SoundPlayer.PlayBublePop();
         BubblePool.ResetBubble(this);
+    }
+
+    public void AttackBubble(int damage)
+    {
+        health -= damage;
+        float rate = scaleIncreasementPerHeath * damage;
+        Vector3 new_scale = new(parent.localScale.x - rate, parent.localScale.y - rate, parent.localScale.z - rate);
+        parent.localScale = new_scale;
+        if (health <= 0)
+        {
+            KillBubble();
+        }
+        print("damage taken");
+    }
+
+    public void InitEnvBubble()
+    {
+        health = panel.initialHealth_envBubble;
+        maximumHealth_envBubble = panel.maximumHealth_envBubble;
+        damagePerSecond_envBubble = panel.damagePerSecond_envBubble;
+        defaultShrinkPerSecond_envBubble = panel.defaultShrinkPerSecond_envBubble;
+        attackShrinkPerSecond_envBubble = panel.attackShrinkPerSecond_envBubble;
+        chargePersecond_envBubble = panel.chargePerSeocnd_envBubble;
+        attackRange_envBubble = panel.attackRange_envBubble;
+
+        scaleIncreasementPerHeath = (maxScale - parent.localScale.x) / maximumHealth_envBubble;
+        float rate = scaleIncreasementPerHeath * health;
+        Vector3 new_scale = new(parent.localScale.x + rate, parent.localScale.y + rate, parent.localScale.z + rate);
+        parent.localScale = new_scale;
     }
 
     private void OnTriggerEnter(Collider other) {

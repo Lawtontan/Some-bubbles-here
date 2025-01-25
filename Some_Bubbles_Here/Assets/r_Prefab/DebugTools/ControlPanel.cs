@@ -17,6 +17,7 @@ public class ControlPanel : MonoBehaviour
     public Indicator enemy = Indicator.Enemy;
     public int heal_enemy;
     public int movingSpeed_enemy;
+    public int damagePerSecond_enemy;
     public float attackRange_enemy; //distance allow to start attacking the target
     public float minSpawnInterval_enemy;
     public float maxSpawnInterval_enemy;

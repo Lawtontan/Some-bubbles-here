@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BubbleInteraction_Manager : MonoBehaviour
 {
-    public GameObject envBubble_prefab;
+    public ControlPanel panel;
+
+    public EnvBubble_Behaviour envBubble_prefab;
     public Transform attachPoint_bubble;
     public float pickUpAndDownBubble_duration;
 
@@ -14,7 +16,7 @@ public class BubbleInteraction_Manager : MonoBehaviour
 
     private void Awake()
     {
-        BubblePool.instance = envBubble_prefab.GetComponentInChildren<EnvBubble_Behaviour>();
+        BubblePool.instance = envBubble_prefab;
     }
     // Start is called before the first frame update
     void Start()
@@ -73,6 +75,13 @@ public class BubbleInteraction_Manager : MonoBehaviour
         BubblePool.GetBubble().transform.position = position;
     }
 
+    public void SpawnBubble()
+    {
+
+        SoundPlayer.PlayPlayerSpawnBubble();
+        BubblePool.GetBubble().transform.position = new(2, 2, 2);
+    }
+
     IEnumerator MoveObject(Transform trans, Vector3 destination)
     {
         float speed = Vector3.Distance(trans.position, destination) / pickUpAndDownBubble_duration;
@@ -88,22 +97,33 @@ public class BubbleInteraction_Manager : MonoBehaviour
 public static class BubblePool
 {
     public static EnvBubble_Behaviour instance;
+    public static List<Transform> activeEnvBubbles = new();
     static Queue<EnvBubble_Behaviour> pool = new();
 
     public static void ResetBubble(EnvBubble_Behaviour bubble)
     {
+        activeEnvBubbles.Remove(bubble.parent.transform);
         pool.Enqueue(bubble);
-        bubble.parent.transform.localScale = Vector3.one;
+
+        bubble.InitEnvBubble();
         bubble.parent.gameObject.SetActive(false);
     }
 
     public static GameObject GetBubble()
     {
+        GameObject op = null;
         if(pool.Count == 0)
         {
-            return GameObject.Instantiate(instance.gameObject);
+            op = GameObject.Instantiate(instance.parent.gameObject);
+        }
+        else
+        {
+            op = pool.Dequeue().parent.gameObject;
+            
         }
 
-        return pool.Dequeue().gameObject;
+        op.SetActive(true);
+        activeEnvBubbles.Add(op.transform);
+        return op;
     }
 }
