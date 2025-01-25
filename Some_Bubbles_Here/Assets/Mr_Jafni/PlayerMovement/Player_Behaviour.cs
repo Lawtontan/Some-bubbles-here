@@ -7,21 +7,36 @@ public class Player_Behaviour : MonoBehaviour
     public KeyCode normalAttack_key, pickUpAndDownBubble_key, spawnBubble_key;
     public KeyCode confirm_key, cancel_key;
     public BubbleInteraction_Manager bubbleInteraction_Manager;
+    public UIInteraction_Manager uIInteraction_Manager;
     public ControlPanel controlPanel;
     public Transform Cam;
-    public GameObject PlayerPrefab;
-    
-    
+    public GameObject PlayerPrefab, Attack_range;
+    public ParticleSystem Bubble_Attack_Effect;
+    int AbilityId;
+    float PlayerAngle;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Attack_range.SetActive(false);
+        Debug.Log("NormalAttack");
+        AbilityId = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        PlayerRotation();
         PlayerMovement();
+
+        //Ability 
+        TriggerNormalAttack();
+        TriggerPickUpBubble();
+        TriggerSpawnBubble();
+        ToggleAbility(AbilityId);
+        
+
+
     }
 
     /// <summary>
@@ -32,6 +47,25 @@ public class Player_Behaviour : MonoBehaviour
 
 
 
+    }
+
+    public void PlayerRotation()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        {
+            // Get the direction from the player to the hit point
+            Vector3 direction = hitInfo.point - PlayerPrefab.transform.position;
+
+            // Ignore the Y component to keep rotation flat
+            direction.y = 0;
+
+            // Create the target rotation
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            // Smoothly rotate towards the target
+            PlayerPrefab.transform.rotation = Quaternion.Slerp(PlayerPrefab.transform.rotation, targetRotation, 1000 * Time.deltaTime);
+        }
     }
 
     //Added By Faruq
@@ -47,21 +81,28 @@ public class Player_Behaviour : MonoBehaviour
         {
             float targetAngle = Mathf.Atan2(Dir.x, Dir.z) * Mathf.Rad2Deg + Cam.eulerAngles.y;
             Vector3 MoveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            PlayerPrefab.transform.rotation = Quaternion.Slerp(PlayerPrefab.transform.rotation, Quaternion.LookRotation(MoveDir), controlPanel.rotateSpeed_player * Time.deltaTime);
-
-
-
+          
             PlayerPrefab.transform.Translate(MoveDir.normalized * controlPanel.movingSpeed_player * Time.deltaTime, Space.World);
 
         }
 
+    
 
     }
+
 
     /// <summary>
     /// Ability One, Fire the bubbles as normal attack
     /// </summary>
     public void TriggerNormalAttack(){
+
+        if (Input.GetKeyDown(normalAttack_key))
+        {
+            AbilityId = 0;
+            uIInteraction_Manager.ResetHighlights();
+            uIInteraction_Manager.Highlights[0].SetActive(true);
+            Debug.Log("NormalAttack");
+        }
 
     }
 
@@ -69,7 +110,17 @@ public class Player_Behaviour : MonoBehaviour
     /// Ability Two.1: Pick up the cubble
     /// </summary>
     public void TriggerPickUpBubble(){
-        // Your code here
+
+        if (Input.GetKeyDown(pickUpAndDownBubble_key))
+        {
+            CancelNormalAttack();
+
+            AbilityId = 1;
+            uIInteraction_Manager.ResetHighlights();
+            uIInteraction_Manager.Highlights[1].SetActive(true);
+            Debug.Log("PickUpBubble");
+
+        }
 
         //Call this at the last, bubble param is the bubble that the player is interacting with
         //bubbleInteraction_Manager.PickUpBubble(bubble);
@@ -79,8 +130,8 @@ public class Player_Behaviour : MonoBehaviour
     /// Ability 2.2: Put down the current bubble
     /// </summary>
     public void TriggerPutDownBubble(){
-        //Your code here
 
+       
         //Call this at the last
         //bubbleInteraction_Manager.PutDownBubble();
     }
@@ -89,7 +140,17 @@ public class Player_Behaviour : MonoBehaviour
     /// Ability 3: Spawn a bubble
     /// </summary>
     public void TriggerSpawnBubble(){
-        //Your code here
+
+        if (Input.GetKeyDown(spawnBubble_key))
+        {
+            CancelNormalAttack();
+
+            AbilityId = 2;
+            uIInteraction_Manager.ResetHighlights();
+            uIInteraction_Manager.Highlights[2].SetActive(true);
+            Debug.Log("SpawnBubble");
+
+        }
 
         //Call this at the last, position param is the position where you spawn the buble at
         //bubbleInteraction_Manager.SpawnBubble(position);
@@ -101,6 +162,63 @@ public class Player_Behaviour : MonoBehaviour
     /// <param name="index"></param>
     public void ToggleAbility(int index){
 
+        if (index == 0)
+        {
+            if (Input.GetKeyDown(confirm_key))
+            {
+                Bubble_Attack_Effect.Play();
+                Attack_range.SetActive(true);
+            }
+
+            if (Input.GetKeyDown(cancel_key))
+            {
+                CancelNormalAttack();
+
+            }
+        }
+
+        if (index == 1)
+        {
+            if (Input.GetKeyDown(confirm_key))
+            {
+                if (uIInteraction_Manager.CoolDownOverlayPickUp.activeSelf == false)
+                {
+                    uIInteraction_Manager.SetAbilityCoolDown(AbilityId);
+                    //Add Your Code Here
+
+                }
+            }
+
+            if (Input.GetKeyDown(cancel_key))
+            {
+
+                //Add Your Code Here
+            }
+        }
+
+        if (index == 2)
+        {
+            if (Input.GetKeyDown(confirm_key))
+            {
+                if (uIInteraction_Manager.CoolDownOverlaySpawn.activeSelf == false)
+                {
+                    uIInteraction_Manager.SetAbilityCoolDown(AbilityId);
+                }
+
+            }
+
+            if (Input.GetKeyDown(cancel_key))
+            {
+                //Add Your Code Here
+
+            }
+        }
+    }
+
+    public void CancelNormalAttack()
+    {
+        Bubble_Attack_Effect.Stop();
+        Attack_range.SetActive(false);
     }
 
     /// <summary>

@@ -12,7 +12,7 @@ public class ControlPanel : MonoBehaviour
     public int spawnBubble_coolDown_player;
     public float attackRange_player;
     public float movingSpeed_player;
-    public float rotateSpeed_player;
+
 
     public Indicator enemy = Indicator.Enemy;
     public int heal_enemy;

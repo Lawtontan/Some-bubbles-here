@@ -122,6 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &557397 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6078923223248091032, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+  m_PrefabInstance: {fileID: 2530359543168424924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &298202636
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +268,6 @@ Transform:
   - {fileID: 379511864}
   - {fileID: 1747633628}
   - {fileID: 1249787515}
-  - {fileID: 966678004}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &336985997
@@ -275,11 +285,10 @@ MonoBehaviour:
   overall: 0
   gameDuration_overall: 100
   player: 1
-  pickUpAndDownBubble_coolDown_player: 10
-  spawnBubble_coolDown_player: 10
+  pickUpAndDownBubble_coolDown_player: 4
+  spawnBubble_coolDown_player: 1
   attackRange_player: 5
-  movingSpeed_player: 1
-  rotateSpeed_player: 0
+  movingSpeed_player: 5
   enemy: 2
   heal_enemy: 10
   movingSpeed_enemy: 1
@@ -2340,6 +2349,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1001019095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2932724659328129362, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+  m_PrefabInstance: {fileID: 2530359543168424924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1116246697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2468,6 +2482,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1129661031 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 656369465961173277, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+  m_PrefabInstance: {fileID: 2530359543168424924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1160101441 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7094813742656609430, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+  m_PrefabInstance: {fileID: 2530359543168424924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1249787514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,6 +2542,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5ef6b1b4be628438138b7b41b63207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CoolDownOverlayPickUp: {fileID: 2530359543168424925}
+  CoolDownOverlaySpawn: {fileID: 1348522255}
+  Highlights:
+  - {fileID: 1791234818}
+  - {fileID: 1001019095}
+  - {fileID: 1129661031}
+  controlPanel: {fileID: 336985997}
+  cooldownPickUpSec: {fileID: 557397}
+  cooldownSpawnSec: {fileID: 1160101441}
 --- !u!1001 &1283902308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2520,6 +2559,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 58524416297503714, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58524416297503714, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 993173706716805249, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2527,6 +2574,14 @@ PrefabInstance:
     - target: {fileID: 993173706716805249, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019509864553894693, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019509864553894693, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6307537772919377087, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
       propertyPath: m_IsActive
@@ -2572,15 +2627,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7534952819143251714, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
---- !u!4 &1283902309 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8053768866224916353, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+--- !u!198 &1283902309 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3019509864553894693, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
   m_PrefabInstance: {fileID: 1283902308}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1348522255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3058240817991193247, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+  m_PrefabInstance: {fileID: 2530359543168424924}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1407188041
 GameObject:
@@ -3037,6 +3101,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1637658553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3610139332114537657, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+  m_PrefabInstance: {fileID: 1283902308}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1686527960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3343,9 +3412,17 @@ MonoBehaviour:
   confirm_key: 323
   cancel_key: 324
   bubbleInteraction_Manager: {fileID: 768393123}
-  controlPanel: {fileID: 966678003}
+  uIInteraction_Manager: {fileID: 1249787516}
+  controlPanel: {fileID: 336985997}
   Cam: {fileID: 963194228}
   PlayerPrefab: {fileID: 625457851}
+  Attack_range: {fileID: 1637658553}
+  Bubble_Attack_Effect: {fileID: 1283902309}
+--- !u!1 &1791234818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 600975603393225657, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+  m_PrefabInstance: {fileID: 2530359543168424924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1792571979
 GameObject:
   m_ObjectHideFlags: 0
@@ -4042,6 +4119,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 985005422}
     m_Modifications:
+    - target: {fileID: 759737184769806586, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 926832242555674196, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223090085985796722, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058240817991193247, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559426890130713026, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4617786857517990731, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4122,6 +4219,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6578106780262578814, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8718911663423809687, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
       propertyPath: m_Name
       value: Ability
@@ -4131,6 +4232,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+--- !u!1 &2530359543168424925 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 926832242555674196, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+  m_PrefabInstance: {fileID: 2530359543168424924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2892554065495838460
 PrefabInstance:
   m_ObjectHideFlags: 0
