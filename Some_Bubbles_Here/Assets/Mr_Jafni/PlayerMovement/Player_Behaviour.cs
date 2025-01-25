@@ -26,8 +26,7 @@ public class Player_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
+        PlayerRotation();
         PlayerMovement();
 
         //Ability 
@@ -48,6 +47,25 @@ public class Player_Behaviour : MonoBehaviour
 
 
 
+    }
+
+    public void PlayerRotation()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        {
+            // Get the direction from the player to the hit point
+            Vector3 direction = hitInfo.point - PlayerPrefab.transform.position;
+
+            // Ignore the Y component to keep rotation flat
+            direction.y = 0;
+
+            // Create the target rotation
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            // Smoothly rotate towards the target
+            PlayerPrefab.transform.rotation = Quaternion.Slerp(PlayerPrefab.transform.rotation, targetRotation, 1000 * Time.deltaTime);
+        }
     }
 
     //Added By Faruq
@@ -81,6 +99,8 @@ public class Player_Behaviour : MonoBehaviour
         if (Input.GetKeyDown(normalAttack_key))
         {
             AbilityId = 0;
+            uIInteraction_Manager.ResetHighlights();
+            uIInteraction_Manager.Highlights[0].SetActive(true);
             Debug.Log("NormalAttack");
         }
 
@@ -93,7 +113,11 @@ public class Player_Behaviour : MonoBehaviour
 
         if (Input.GetKeyDown(pickUpAndDownBubble_key))
         {
+            CancelNormalAttack();
+
             AbilityId = 1;
+            uIInteraction_Manager.ResetHighlights();
+            uIInteraction_Manager.Highlights[1].SetActive(true);
             Debug.Log("PickUpBubble");
 
         }
@@ -119,7 +143,11 @@ public class Player_Behaviour : MonoBehaviour
 
         if (Input.GetKeyDown(spawnBubble_key))
         {
+            CancelNormalAttack();
+
             AbilityId = 2;
+            uIInteraction_Manager.ResetHighlights();
+            uIInteraction_Manager.Highlights[2].SetActive(true);
             Debug.Log("SpawnBubble");
 
         }
@@ -144,9 +172,7 @@ public class Player_Behaviour : MonoBehaviour
 
             if (Input.GetKeyDown(cancel_key))
             {
-                //NormalAttack Disable
-                Bubble_Attack_Effect.Stop();
-                Attack_range.SetActive(false);
+                CancelNormalAttack();
 
             }
         }
@@ -187,6 +213,12 @@ public class Player_Behaviour : MonoBehaviour
 
             }
         }
+    }
+
+    public void CancelNormalAttack()
+    {
+        Bubble_Attack_Effect.Stop();
+        Attack_range.SetActive(false);
     }
 
     /// <summary>

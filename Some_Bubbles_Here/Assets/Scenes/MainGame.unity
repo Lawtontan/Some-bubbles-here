@@ -289,7 +289,6 @@ MonoBehaviour:
   spawnBubble_coolDown_player: 1
   attackRange_player: 5
   movingSpeed_player: 5
-  rotateSpeed_player: 10
   enemy: 2
   heal_enemy: 10
   movingSpeed_enemy: 1
@@ -2272,6 +2271,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1001019095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2932724659328129362, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+  m_PrefabInstance: {fileID: 2530359543168424924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1116246697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2400,6 +2404,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1129661031 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 656369465961173277, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+  m_PrefabInstance: {fileID: 2530359543168424924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1160101441 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7094813742656609430, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
@@ -2457,6 +2466,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoolDownOverlayPickUp: {fileID: 2530359543168424925}
   CoolDownOverlaySpawn: {fileID: 1348522255}
+  Highlights:
+  - {fileID: 1791234818}
+  - {fileID: 1001019095}
+  - {fileID: 1129661031}
   controlPanel: {fileID: 336985997}
   cooldownPickUpSec: {fileID: 557397}
   cooldownSpawnSec: {fileID: 1160101441}
@@ -3184,6 +3197,11 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 625457851}
   Attack_range: {fileID: 1637658553}
   Bubble_Attack_Effect: {fileID: 1283902309}
+--- !u!1 &1791234818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 600975603393225657, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
+  m_PrefabInstance: {fileID: 2530359543168424924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1792571979
 GameObject:
   m_ObjectHideFlags: 0

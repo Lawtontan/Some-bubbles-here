@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIInteraction_Manager : MonoBehaviour
 {
     public GameObject CoolDownOverlayPickUp, CoolDownOverlaySpawn;
+    public GameObject[] Highlights;
     public ControlPanel controlPanel;
     Image CooldownPickUp, CooldownSpawn;
     public TextMeshProUGUI cooldownPickUpSec, cooldownSpawnSec;
@@ -54,6 +55,13 @@ public class UIInteraction_Manager : MonoBehaviour
     /// <param name="index"></param>
     public void SetActiveAbility_UI(int index){
 
+    }
+
+    public void ResetHighlights ()
+    {
+        Highlights[0].SetActive(false);
+        Highlights[1].SetActive(false);
+        Highlights[2].SetActive(false);
     }
 
     public void ReplenishAbility()
