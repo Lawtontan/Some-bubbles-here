@@ -27,6 +27,7 @@ public class ControlPanel : MonoBehaviour
     public int damagePerSecond_envBubble;
     public int defaultShrinkPerSecond_envBubble;
     public int attackShrinkPerSecond_envBubble;
+    public int chargePerSeocnd_envBubble;
     public float attackRange_envBubble;
 
     public Indicator weather = Indicator.Weather;
