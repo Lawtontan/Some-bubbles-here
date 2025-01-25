@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMonitor_Manager : MonoBehaviour
 {
+    public UIInteraction_Manager uIInteraction_Manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +15,10 @@ public class GameMonitor_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (uIInteraction_Manager == null)
+        {
+            return;
+        }
     }
 
     /// <summary>
@@ -28,6 +33,10 @@ public class GameMonitor_Manager : MonoBehaviour
     /// </summary>
     public void TriggerWinScene(){
 
+        if (uIInteraction_Manager.ProgressBar.fillAmount >= 1)
+        {
+            SceneManager.LoadScene("WinScene");
+        }
     }
 
     /// <summary>
