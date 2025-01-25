@@ -9,9 +9,13 @@ public class UIInteraction_Manager : MonoBehaviour
     public GameObject CoolDownOverlayPickUp, CoolDownOverlaySpawn;
     public GameObject[] Highlights;
     public ControlPanel controlPanel;
+    public Image ProgressBar;
+    public Weather_Manager weather_Manager;
     Image CooldownPickUp, CooldownSpawn;
     public TextMeshProUGUI cooldownPickUpSec, cooldownSpawnSec;
-   
+    public float progressSpeed;
+    bool[] checkPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +23,8 @@ public class UIInteraction_Manager : MonoBehaviour
         CooldownSpawn = CoolDownOverlaySpawn.GetComponent<Image>();
         CooldownPickUp.fillAmount = 0;
         CooldownSpawn.fillAmount = 0;
+        ProgressBar.fillAmount = 0;
+        checkPoint = new bool[3];
 
     }
 
@@ -26,7 +32,7 @@ public class UIInteraction_Manager : MonoBehaviour
     void Update()
     {
         ReplenishAbility();
-
+        ProgressBarActive();
         
     }
 
@@ -62,6 +68,36 @@ public class UIInteraction_Manager : MonoBehaviour
         Highlights[0].SetActive(false);
         Highlights[1].SetActive(false);
         Highlights[2].SetActive(false);
+    }
+
+    public void ProgressBarActive()
+    {
+        if (ProgressBar.fillAmount < 1)
+        {
+            ProgressBar.fillAmount += progressSpeed * Time.deltaTime;
+        }
+
+        if (ProgressBar.fillAmount >= 0.2f && ProgressBar.fillAmount < 0.5f && checkPoint[0] == false)
+        {
+            Debug.Log("Weather 1");
+            weather_Manager.GoToNextSeason();
+            checkPoint[0] = true;
+
+        }
+        else if (ProgressBar.fillAmount >= 0.5f && ProgressBar.fillAmount < 0.7f && checkPoint[1] == false)
+        {
+            Debug.Log("Weather 2");
+            weather_Manager.GoToNextSeason();
+            checkPoint[1] = true;
+        }
+        else if (ProgressBar.fillAmount >= 0.7f && checkPoint[2] == false)
+        {
+            Debug.Log("Weather 3");
+            weather_Manager.GoToNextSeason();
+            checkPoint[2] = true;
+        }
+
+     
     }
 
     public void ReplenishAbility()

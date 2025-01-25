@@ -8,9 +8,10 @@ public class Player_Behaviour : MonoBehaviour
     public KeyCode confirm_key, cancel_key;
     public BubbleInteraction_Manager bubbleInteraction_Manager;
     public UIInteraction_Manager uIInteraction_Manager;
+    public BubbleInteraction_Manager bubbleInteraction;
     public ControlPanel controlPanel;
     public Transform Cam;
-    public GameObject PlayerPrefab, Attack_range;
+    public GameObject PlayerPrefab, Attack_range, EvBubble, HoldBubblePos;
     public ParticleSystem Bubble_Attack_Effect;
     int AbilityId;
     float PlayerAngle;
@@ -184,15 +185,15 @@ public class Player_Behaviour : MonoBehaviour
                 if (uIInteraction_Manager.CoolDownOverlayPickUp.activeSelf == false)
                 {
                     uIInteraction_Manager.SetAbilityCoolDown(AbilityId);
-                    //Add Your Code Here
+                    bubbleInteraction.PickUpBubble(HoldBubblePos.transform); //<-
 
                 }
             }
 
             if (Input.GetKeyDown(cancel_key))
             {
+                bubbleInteraction.PutDownBubble(); //<-
 
-                //Add Your Code Here
             }
         }
 
@@ -203,6 +204,8 @@ public class Player_Behaviour : MonoBehaviour
                 if (uIInteraction_Manager.CoolDownOverlaySpawn.activeSelf == false)
                 {
                     uIInteraction_Manager.SetAbilityCoolDown(AbilityId);
+                    bubbleInteraction.SpawnBubble(PlayerPrefab.transform.position); //<-
+
                 }
 
             }
