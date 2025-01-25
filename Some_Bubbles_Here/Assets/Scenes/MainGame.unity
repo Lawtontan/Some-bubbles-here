@@ -2507,8 +2507,11 @@ MonoBehaviour:
   - {fileID: 1001019095}
   - {fileID: 1129661031}
   controlPanel: {fileID: 336985997}
+  ProgressBar: {fileID: 1443888827}
+  weather_Manager: {fileID: 319985941}
   cooldownPickUpSec: {fileID: 557397}
   cooldownSpawnSec: {fileID: 1160101441}
+  progressSpeed: 0.03
 --- !u!1001 &1283902308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2738,6 +2741,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1443888827 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 314137766555455289, guid: 9e4f6a05d75c8134588f2628692289fd, type: 3}
+  m_PrefabInstance: {fileID: 2892554065495838460}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1542129020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3665,6 +3679,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 985005422}
     m_Modifications:
+    - target: {fileID: 314137766555455289, guid: 9e4f6a05d75c8134588f2628692289fd, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 314137766555455289, guid: 9e4f6a05d75c8134588f2628692289fd, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 314137766555455289, guid: 9e4f6a05d75c8134588f2628692289fd, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1185321165884062268, guid: 9e4f6a05d75c8134588f2628692289fd, type: 3}
       propertyPath: m_Name
       value: GameStatusBar
