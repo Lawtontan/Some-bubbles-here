@@ -48,7 +48,7 @@ public class Enemy_Manager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        EnemyPool.GetEnemy().transform.position = Vector3.zero;
+        EnemyPool.GetEnemy().transform.position = new(Random.Range(-3, 3), 5, Random.Range(-3, 3));
     }
 }
 

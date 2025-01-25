@@ -18,25 +18,49 @@ public class WeatherSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.U)){
-            SoundPlayer.ToggleBgmDefault(true);
-            RenderSettings.skybox = defaultSky;
-            directionalLight.color = defaultLight;
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            SetWeatherDefault();
         }
-        else if(Input.GetKeyDown(KeyCode.I)){
-            SoundPlayer.ToggleBgmSummer(true);
-            RenderSettings.skybox = summerSky;
-            directionalLight.color = summerLight;
+        else if(Input.GetKeyDown(KeyCode.I))
+        {
+            SetWeatherSummer();
         }
-        else if(Input.GetKeyDown(KeyCode.O)){
-            SoundPlayer.ToggleBgmRain(true);
-            RenderSettings.skybox = rainSky;
-            directionalLight.color = rainLight;
-        }   
-        else if(Input.GetKeyDown(KeyCode.P)){
-            SoundPlayer.ToggleBgmWinter(true);
-            RenderSettings.skybox = winterSky;
-            directionalLight.color = winterLight;
+        else if(Input.GetKeyDown(KeyCode.O))
+        {
+            SetWeatherRain();
         }
+        else if(Input.GetKeyDown(KeyCode.P))
+        {
+            SetWeatherWinter();
+        }
+    }
+
+    public void SetWeatherWinter()
+    {
+        SoundPlayer.ToggleBgmWinter(true);
+        RenderSettings.skybox = winterSky;
+        directionalLight.color = winterLight;
+    }
+
+    public void SetWeatherRain()
+    {
+        SoundPlayer.ToggleBgmRain(true);
+        RenderSettings.skybox = rainSky;
+        directionalLight.color = rainLight;
+    }
+
+    public void SetWeatherSummer()
+    {
+        SoundPlayer.ToggleBgmSummer(true);
+        RenderSettings.skybox = summerSky;
+        directionalLight.color = summerLight;
+    }
+
+    public void SetWeatherDefault()
+    {
+        SoundPlayer.ToggleBgmDefault(true);
+        RenderSettings.skybox = defaultSky;
+        directionalLight.color = defaultLight;
     }
 }

@@ -21,6 +21,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
     private int health; 
     private float lastChargeTime;
     private float scaleIncreasementPerHeath;
+    [SerializeField]
     private Enemy_Behaviour attackTarget;
     private void Awake()
     {
@@ -62,7 +63,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
         //if enemy died
         if(attackTarget == null || !attackTarget.parent.gameObject.activeSelf){
             attackTarget = null;
-            StartCoroutine(TurnOffAttackingIfNoEnemyFound());
+            //StartCoroutine(TurnOffAttackingIfNoEnemyFound());
             return;
         }
 
@@ -140,15 +141,22 @@ public class EnvBubble_Behaviour : MonoBehaviour
         chargePersecond_envBubble = panel.chargePerSeocnd_envBubble;
         attackRange_envBubble = panel.attackRange_envBubble;
 
+        for(int i = 0; i < parent.childCount; i++){
+            Transform child = parent.GetChild(i);
+            child.localPosition = Vector3.zero;
+            child.rotation = Quaternion.identity;
+        }
+        
         scaleIncreasementPerHeath = (maxScale - parent.localScale.x) / maximumHealth_envBubble;
         float rate = scaleIncreasementPerHeath * health;
-        Vector3 new_scale = new(parent.localScale.x + rate, parent.localScale.y + rate, parent.localScale.z + rate);
+        Vector3 new_scale = new(1 + rate, 1 + rate, 1 + rate);
         parent.localScale = new_scale;
 
         interactionRange.radius = attackRange_envBubble;
 
         chargingState = false;
         attackingState = false;
+        attackTarget = null;
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -159,7 +167,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
             chargingState = true;
         }
         if(attackTarget == null && other.transform.CompareTag("Enemy")){
-            attackTarget = other.transform.parent.GetComponentInChildren<Enemy_Behaviour>();
+            attackTarget = other.transform.GetComponent<Enemy_Behaviour>();
             attackingState = true;
         }
         //print("trigger enter" + (Time.time - lastChargeTime));
@@ -169,7 +177,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
         //previous enemy killed, find new enemy
         if(attackingState && attackTarget == null){
             if(other.transform.CompareTag("Enemy")){
-                attackTarget = other.transform.parent.GetComponentInChildren<Enemy_Behaviour>();
+                attackTarget = other.transform.GetComponent<Enemy_Behaviour>();
                 attackingState = true;
             }
         }
@@ -179,7 +187,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
     {
         if (other.transform.CompareTag("WeaponBubble"))
         {
-            chargingState = false;
+            //chargingState = false;
         }
     }
 
@@ -189,6 +197,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
 
         if(attackTarget == null){
             attackingState = false;
+            print("no enemy found");
         }
     }
     
