@@ -2209,6 +2209,7 @@ MonoBehaviour:
   damagePerSecond_envBubble: 0
   defaultShrinkPerSecond_envBubble: 0
   attackShrinkPerSecond_envBubble: 0
+  chargePerSeocnd_envBubble: 0
   attackRange_envBubble: 0
   weather: 4
   weatherSequence: 00000000000000000000000000000000
@@ -3193,11 +3194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aeb216fdfb78b247be6ce81cd083363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalAttack_key: 0
-  pickUpAndDownBubble_key: 0
-  spawnBubble_key: 0
-  confirm_key: 0
-  cancel_key: 0
+  normalAttack_key: 49
+  pickUpAndDownBubble_key: 50
+  spawnBubble_key: 51
+  confirm_key: 323
+  cancel_key: 324
   bubbleInteraction_Manager: {fileID: 768393123}
   controlPanel: {fileID: 966678003}
   Cam: {fileID: 963194228}
