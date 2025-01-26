@@ -1789,7 +1789,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cc29083797802dd4c8349bece874df11, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a7e46513eb09e834ca39b904b738c53f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2223,6 +2223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 833549334}
+  - component: {fileID: 833549335}
   m_Layer: 0
   m_Name: BGM
   m_TagString: Untagged
@@ -2249,6 +2250,102 @@ Transform:
   - {fileID: 730536903}
   m_Father: {fileID: 767112564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &833549335
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833549333}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b90620d2909209f469021834fdce0be9, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 1
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!224 &859926502 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4617786857517990731, guid: f8e608edae53d974288cd78ae95f9298, type: 3}
@@ -2622,7 +2719,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9ea26e2a5b7aa114d8f68e8fd2ed885d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d877545d7559e1042a6d3afb126735f4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3161,6 +3258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1249787515}
   - component: {fileID: 1249787516}
+  - component: {fileID: 1249787517}
   m_Layer: 0
   m_Name: UIInteraction_Manager
   m_TagString: Untagged
@@ -3207,6 +3305,19 @@ MonoBehaviour:
   cooldownPickUpSec: {fileID: 557397}
   cooldownSpawnSec: {fileID: 1160101441}
   progressSpeed: 0.03
+--- !u!114 &1249787517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249787514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6613300f2a25db4c993cf2d3311cbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneName: LoseScene
 --- !u!1001 &1283902308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4077,7 +4188,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 49c73ba57fa780d4a9c8b7e0a6a45b11, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 26b9f681e890d474b8f694cacb7091b7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
