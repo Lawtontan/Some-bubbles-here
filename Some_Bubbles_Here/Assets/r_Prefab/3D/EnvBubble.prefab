@@ -281,7 +281,11 @@ PrefabInstance:
     - target: {fileID: 5563589120552867123, guid: f3df8a10d72ebb542be0a7da553e0d6c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e22e434b739a8594fa5a92b4a13cf8be, type: 2}
+      objectReference: {fileID: 2100000, guid: 12cecb787a0f3874b966184816c8b77d, type: 2}
+    - target: {fileID: 6807976795475792831, guid: f3df8a10d72ebb542be0a7da553e0d6c, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8334269917774918479, guid: 1eca3028d58f1f24d8d83b0ad80f3307, type: 3}
     - target: {fileID: 9020340199990811850, guid: f3df8a10d72ebb542be0a7da553e0d6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
