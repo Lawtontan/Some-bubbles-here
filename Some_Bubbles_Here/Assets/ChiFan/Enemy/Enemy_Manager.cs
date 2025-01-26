@@ -20,7 +20,7 @@ public class Enemy_Manager : MonoBehaviour
         min_height = bottomRight_map.position.z;
         min_width = topLeft_map.position.x;
         max_height = topLeft_map.position.z;
-        max_width = bottomRight_map.position.z;
+        max_width = bottomRight_map.position.x;
 
         minSpawnInterval = panel.minSpawnInterval_enemy;
         maxSpawnInterval = panel.maxSpawnInterval_enemy;

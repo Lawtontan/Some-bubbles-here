@@ -15,9 +15,22 @@ public class BubbleInteraction_Manager : MonoBehaviour
     private EnvBubble_Behaviour currentlyOnhand_behaviour;
     private float currentlyOnHand_initHeight;
 
+    public Transform topLeft_map;
+    public Transform bottomRight_map;
+    public int initBubble_count;
+    private float min_height, min_width, max_height, max_width, spawnTriggerTime;
     private void Awake()
     {
         BubblePool.instance = envBubble_prefab;
+
+        min_height = bottomRight_map.position.z;
+        min_width = topLeft_map.position.x;
+        max_height = topLeft_map.position.z;
+        max_width = bottomRight_map.position.x;
+
+        for(int i = 0; i < initBubble_count; i++){
+            BubblePool.GetBubble().transform.position = new(Random.Range(min_width, max_width), topLeft_map.position.y, Random.Range(min_height, max_height));
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -34,6 +47,12 @@ public class BubbleInteraction_Manager : MonoBehaviour
                 activeBubble.GetComponentInChildren<EnvBubble_Behaviour>().chargingState = false;
             }
 
+        }
+
+        if(Time.time >= spawnTriggerTime)
+        {
+            spawnTriggerTime = Time.time + 5;
+            BubblePool.GetBubble().transform.position = new(Random.Range(min_width, max_width), topLeft_map.position.y, Random.Range(min_height, max_height));
         }
         print(BubblePool.activeEnvBubblesParent.Count);
     }

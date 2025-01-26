@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeatherSwitcher : MonoBehaviour
@@ -14,6 +16,12 @@ public class WeatherSwitcher : MonoBehaviour
     public Material rainSky;
     public Color winterLight;
     public Material winterSky;
+
+    public Material[] map_material;
+    public Material[] grass_material;
+    public MeshRenderer[] grass_mr;
+    public MeshRenderer map_mr;
+    public GameObject[] leafs;
 
     // Update is called once per frame
     void Update()
@@ -41,6 +49,15 @@ public class WeatherSwitcher : MonoBehaviour
         SoundPlayer.ToggleBgmWinter(true);
         RenderSettings.skybox = winterSky;
         directionalLight.color = winterLight;
+
+
+        map_mr.material = map_material[3];
+        foreach(var leaf in leafs){
+            leaf.SetActive(false);
+        }
+        foreach(var grass in grass_mr){
+            grass.material = grass_material[3];
+        }
     }
 
     public void SetWeatherRain()
