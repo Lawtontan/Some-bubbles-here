@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
@@ -15,6 +16,8 @@ public class UIInteraction_Manager : MonoBehaviour
     public TextMeshProUGUI cooldownPickUpSec, cooldownSpawnSec;
     public float progressSpeed;
     bool[] checkPoint;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +36,7 @@ public class UIInteraction_Manager : MonoBehaviour
     {
         ReplenishAbility();
         ProgressBarActive();
-        
+     
     }
 
     /// <summary>
@@ -96,8 +99,12 @@ public class UIInteraction_Manager : MonoBehaviour
             weather_Manager.GoToNextSeason();
             checkPoint[2] = true;
         }
+        else if (ProgressBar.fillAmount >= 1f)
+        {
+            SceneManager.LoadSceneAsync("WinScene");
 
-     
+        }
+
     }
 
     public void ReplenishAbility()
