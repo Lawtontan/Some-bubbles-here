@@ -26,20 +26,22 @@ public class Weather_Manager : MonoBehaviour
     /// </summary>
     public void GoToNextSeason(){
         weatherIndex++;
-        int weather = (int)panel.weatherSequence[weatherIndex];
         
-        switch (weather)
+        switch (weatherIndex)
         {
             case (1):
                 StartCoroutine(Summer());
+                weatherSwitcher.SetWeatherSummer();
                 break;
 
             case (2):
                 StartCoroutine(Rain());
+                weatherSwitcher.SetWeatherRain();
                 break;
 
             case (3):
                 StartCoroutine(Winter());
+                weatherSwitcher.SetWeatherWinter();
                 break;
 
             default:

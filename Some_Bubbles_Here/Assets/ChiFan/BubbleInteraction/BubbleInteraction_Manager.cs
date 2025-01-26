@@ -60,20 +60,20 @@ public class BubbleInteraction_Manager : MonoBehaviour
     /// Pick up the current bubble, required pick up bubble first before putting down bubble
     /// </summary>
     /// <param name="bubble">Transform of the bubble to pick up</param>
-    public void PickUpBubble(Transform bubble){
-        bubble.parent = attachPoint_bubble;
-        currentlyOnhand = bubble;
-        currentlyOnHand_initHeight = bubble.position.y;
+    // public void PickUpBubble(Transform bubble){
+    //     bubble.parent = attachPoint_bubble;
+    //     currentlyOnhand = bubble;
+    //     currentlyOnHand_initHeight = bubble.position.y;
 
-        currentlyOnhand_behaviour = bubble.GetComponentInChildren<EnvBubble_Behaviour>();
-        if(currentlyOnhand_behaviour != null)
-        {
-            currentlyOnhand_behaviour.transform.GetComponent<Rigidbody>().isKinematic = true;
-            currentlyOnhand_behaviour.parent.transform.localPosition = Vector3.zero;
-            currentlyOnhand_behaviour.enabled = false;
-        }
-        StartCoroutine(MoveObject(bubble, attachPoint_bubble.position));
-    }
+    //     currentlyOnhand_behaviour = bubble.GetComponentInChildren<EnvBubble_Behaviour>();
+    //     if(currentlyOnhand_behaviour != null)
+    //     {
+    //         currentlyOnhand_behaviour.transform.GetComponent<Rigidbody>().isKinematic = true;
+    //         currentlyOnhand_behaviour.parent.transform.localPosition = Vector3.zero;
+    //         currentlyOnhand_behaviour.enabled = false;
+    //     }
+    //     StartCoroutine(MoveObject(bubble, attachPoint_bubble.position));
+    // }
 
     /// <summary>
     /// Put down the currently holding bubble

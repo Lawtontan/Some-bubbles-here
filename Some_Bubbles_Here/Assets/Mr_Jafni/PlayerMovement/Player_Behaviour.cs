@@ -38,7 +38,7 @@ public class Player_Behaviour : MonoBehaviour
 
         //Ability 
         TriggerNormalAttack();
-        TriggerPickUpBubble();
+        //TriggerPickUpBubble();
         TriggerSpawnBubble();
         ToggleAbility(AbilityId);
 
@@ -184,24 +184,24 @@ public class Player_Behaviour : MonoBehaviour
             }
         }
 
-        if (index == 1)
-        {
-            if (Input.GetKeyDown(confirm_key))
-            {
-                if (uIInteraction_Manager.CoolDownOverlayPickUp.activeSelf == false)
-                {
-                    uIInteraction_Manager.SetAbilityCoolDown(AbilityId);
-                    bubbleInteraction.PickUpBubble(bubbleReference.RefBubble); //<-
+        // if (index == 1)
+        // {
+        //     if (Input.GetKeyDown(confirm_key))
+        //     {
+        //         if (uIInteraction_Manager.CoolDownOverlayPickUp.activeSelf == false)
+        //         {
+        //             uIInteraction_Manager.SetAbilityCoolDown(AbilityId);
+        //             bubbleInteraction.PickUpBubble(bubbleReference.RefBubble); //<-
 
-                }
-            }
+        //         }
+        //     }
 
-            if (Input.GetKeyDown(cancel_key))
-            {
-                bubbleInteraction.PutDownBubble(); //<-
+        //     if (Input.GetKeyDown(cancel_key))
+        //     {
+        //         bubbleInteraction.PutDownBubble(); //<-
 
-            }
-        }
+        //     }
+        // }
 
         if (index == 2)
         {
