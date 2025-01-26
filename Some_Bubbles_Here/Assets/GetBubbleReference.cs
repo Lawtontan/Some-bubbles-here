@@ -10,7 +10,15 @@ public class GetBubbleReference : MonoBehaviour
     {
         if (other.gameObject.tag == "EnvBubble")
         {
-            RefBubble = other.gameObject.transform;
+            RefBubble = other.gameObject.GetComponent<EnvBubble_Behaviour>().parent;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "EnvBubble")
+        {
+            RefBubble = null;
         }
     }
 }
