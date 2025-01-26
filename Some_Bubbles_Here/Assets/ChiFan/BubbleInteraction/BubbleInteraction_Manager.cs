@@ -33,7 +33,9 @@ public class BubbleInteraction_Manager : MonoBehaviour
             foreach(var activeBubble in BubblePool.activeEnvBubblesParent){
                 activeBubble.GetComponentInChildren<EnvBubble_Behaviour>().chargingState = false;
             }
+
         }
+        print(BubblePool.activeEnvBubblesParent.Count);
     }
 
     /// <summary>
