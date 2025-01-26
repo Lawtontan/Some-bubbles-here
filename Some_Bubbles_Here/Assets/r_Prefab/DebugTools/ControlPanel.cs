@@ -13,9 +13,11 @@ public class ControlPanel : MonoBehaviour
     public float attackRange_player;
     public float movingSpeed_player;
 
+
     public Indicator enemy = Indicator.Enemy;
     public int heal_enemy;
     public int movingSpeed_enemy;
+    public int damagePerSecond_enemy;
     public float attackRange_enemy; //distance allow to start attacking the target
     public float minSpawnInterval_enemy;
     public float maxSpawnInterval_enemy;
@@ -26,6 +28,7 @@ public class ControlPanel : MonoBehaviour
     public int damagePerSecond_envBubble;
     public int defaultShrinkPerSecond_envBubble;
     public int attackShrinkPerSecond_envBubble;
+    public int chargePerSeocnd_envBubble;
     public float attackRange_envBubble;
 
     public Indicator weather = Indicator.Weather;
@@ -34,12 +37,19 @@ public class ControlPanel : MonoBehaviour
     public int duration_weather;
 
     public WeatherType summer = WeatherType.Summer;
+    public int minInterval_summer;
+    public int maxInterval_summer;
     public float bubbleChargeUpMultiplier_summer;
 
     public WeatherType rain = WeatherType.Rain;
+    public int minInterval_rain;
+    public int maxInterval_rain;
     public float windForce_rain;
 
     public WeatherType winter = WeatherType.Winter;
+    public int minInterval_winter;
+    public int maxInterval_winter;
+    public float speedMultiplier_winter;
     //public float tbh
 
 
