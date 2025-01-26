@@ -2101,7 +2101,7 @@ Transform:
   m_GameObject: {fileID: 812804067}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 2, z: 5}
+  m_LocalPosition: {x: -4, y: 2, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2172,7 +2172,7 @@ Transform:
   m_GameObject: {fileID: 869982565}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 2, z: -5}
+  m_LocalPosition: {x: 4, y: 2, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3157,6 +3157,18 @@ PrefabInstance:
     - target: {fileID: 7534952819143251714, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053768866224916353, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053768866224916353, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053768866224916353, guid: 9d7b60f616617754a9e32c370dfee558, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4227,6 +4239,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 625457851}
   Attack_range: {fileID: 1637658553}
   Bubble_Attack_Effect: {fileID: 1283902309}
+  attachPoint: {fileID: 485185394}
 --- !u!1 &1791234818 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 600975603393225657, guid: f8e608edae53d974288cd78ae95f9298, type: 3}

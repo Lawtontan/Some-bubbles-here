@@ -18,6 +18,7 @@ public class Player_Behaviour : MonoBehaviour
     float PlayerAngle;
 
     //added by chi fong 26/01
+    public Transform attachPoint;
     float freezeEffect_speedMultiplier = 1;
 
     // Start is called before the first frame update
@@ -208,7 +209,7 @@ public class Player_Behaviour : MonoBehaviour
                 if (uIInteraction_Manager.CoolDownOverlaySpawn.activeSelf == false)
                 {
                     uIInteraction_Manager.SetAbilityCoolDown(AbilityId);
-                    bubbleInteraction.SpawnBubble(PlayerPrefab.transform.position); //<-
+                    bubbleInteraction.SpawnBubble(attachPoint.position); //<-
 
                 }
 
