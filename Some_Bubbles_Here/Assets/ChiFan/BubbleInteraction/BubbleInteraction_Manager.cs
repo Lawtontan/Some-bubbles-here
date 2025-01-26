@@ -50,6 +50,8 @@ public class BubbleInteraction_Manager : MonoBehaviour
         currentlyOnhand_behaviour = bubble.GetComponentInChildren<EnvBubble_Behaviour>();
         if(currentlyOnhand_behaviour != null)
         {
+            currentlyOnhand_behaviour.transform.GetComponent<Rigidbody>().isKinematic = true;
+            currentlyOnhand_behaviour.parent.transform.localPosition = Vector3.zero;
             currentlyOnhand_behaviour.enabled = false;
         }
         StartCoroutine(MoveObject(bubble, attachPoint_bubble.position));
@@ -62,6 +64,7 @@ public class BubbleInteraction_Manager : MonoBehaviour
 
         if(currentlyOnhand_behaviour != null)
         {
+            currentlyOnhand_behaviour.transform.GetComponent<Rigidbody>().isKinematic = false;
             currentlyOnhand_behaviour.enabled = true;
         }
 
