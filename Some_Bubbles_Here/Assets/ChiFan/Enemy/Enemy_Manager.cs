@@ -9,6 +9,7 @@ public class Enemy_Manager : MonoBehaviour
 
     public Transform topLeft_map;
     public Transform bottomRight_map;
+    public LoadGameScene load;
 
     private float min_height, min_width, max_height, max_width;
     private float minSpawnInterval, maxSpawnInterval;
@@ -61,6 +62,9 @@ public class Enemy_Manager : MonoBehaviour
         if (nearestBubble != null)
         {
             enemy.SetAttackTarget(nearestBubble);
+        }
+        else{
+            load.GotoScene();
         }
     }
 

@@ -54,7 +54,6 @@ public class BubbleInteraction_Manager : MonoBehaviour
             spawnTriggerTime = Time.time + 5;
             BubblePool.GetBubble().transform.position = new(Random.Range(min_width, max_width), topLeft_map.position.y, Random.Range(min_height, max_height));
         }
-        print(BubblePool.activeEnvBubblesParent.Count);
     }
 
     /// <summary>
