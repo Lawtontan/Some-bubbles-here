@@ -16,6 +16,9 @@ public class Player_Behaviour : MonoBehaviour
     int AbilityId;
     float PlayerAngle;
 
+    //added by chi fong 26/01
+    float freezeEffect_speedMultiplier = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,10 +47,8 @@ public class Player_Behaviour : MonoBehaviour
     /// Toggle the player ability to continue moving
     /// </summary>
     /// <param name="isSetActive"> Enable the player movement? </param>
-    public void TogglePlayerMovement(bool isSetActive){
-
-
-
+    public void ToggleFreeze(float multiplier){
+        freezeEffect_speedMultiplier = multiplier;
     }
 
     public void PlayerRotation()
@@ -82,8 +83,10 @@ public class Player_Behaviour : MonoBehaviour
         {
             float targetAngle = Mathf.Atan2(Dir.x, Dir.z) * Mathf.Rad2Deg + Cam.eulerAngles.y;
             Vector3 MoveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-          
-            PlayerPrefab.transform.Translate(MoveDir.normalized * controlPanel.movingSpeed_player * Time.deltaTime, Space.World);
+
+            //Added by chi fong 26/01 for freezing effect
+            float speed = controlPanel.movingSpeed_player * freezeEffect_speedMultiplier;
+            PlayerPrefab.transform.Translate(MoveDir.normalized * speed * Time.deltaTime, Space.World);
 
         }
 

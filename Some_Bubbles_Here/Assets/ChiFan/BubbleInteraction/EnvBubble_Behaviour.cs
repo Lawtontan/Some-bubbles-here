@@ -63,7 +63,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
         //if enemy died
         if(attackTarget == null || !attackTarget.parent.gameObject.activeSelf){
             attackTarget = null;
-            //StartCoroutine(TurnOffAttackingIfNoEnemyFound());
+            StartCoroutine(TurnOffAttackingIfNoEnemyFound());
             return;
         }
 
@@ -108,6 +108,21 @@ public class EnvBubble_Behaviour : MonoBehaviour
         {
             KillBubble();
         }
+    }
+
+    public void ChargeEnvBubble(float multiplier)
+    {
+        int increasement = (int)(chargePersecond_envBubble * multiplier);
+        health += increasement;
+        float rate = (scaleIncreasementPerHeath * increasement);
+        Vector3 new_scale = new(parent.localScale.x + rate, parent.localScale.y + rate, parent.localScale.z + rate);
+        parent.localScale = new_scale;
+
+        if (health > maximumHealth_envBubble)
+        {
+            KillBubble();
+        }
+
     }
 
     /// <summary>
@@ -187,7 +202,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
     {
         if (other.transform.CompareTag("WeaponBubble"))
         {
-            //chargingState = false;
+            chargingState = false;
         }
     }
 
@@ -197,7 +212,6 @@ public class EnvBubble_Behaviour : MonoBehaviour
 
         if(attackTarget == null){
             attackingState = false;
-            print("no enemy found");
         }
     }
     
