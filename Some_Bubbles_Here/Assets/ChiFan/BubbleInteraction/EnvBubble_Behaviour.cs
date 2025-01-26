@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnvBubble_Behaviour : MonoBehaviour
 {
     public ControlPanel panel;
+    public BubbleEffect_Behaviour effect;
 
     public Transform parent;
     public SphereCollider interactionRange;
@@ -21,7 +22,6 @@ public class EnvBubble_Behaviour : MonoBehaviour
     private int health; 
     private float lastChargeTime;
     private float scaleIncreasementPerHeath;
-    [SerializeField]
     private Enemy_Behaviour attackTarget;
     private void Awake()
     {
@@ -88,6 +88,8 @@ public class EnvBubble_Behaviour : MonoBehaviour
         float rate = scaleIncreasementPerHeath * chargePersecond_envBubble;
         Vector3 new_scale = new(parent.localScale.x + rate, parent.localScale.y + rate, parent.localScale.z + rate);
         parent.localScale = new_scale;
+
+        effect.PlayChargeEffect();
         if(health > maximumHealth_envBubble)
         {
             KillBubble();
@@ -104,6 +106,8 @@ public class EnvBubble_Behaviour : MonoBehaviour
         float rate = scaleIncreasementPerHeath * defaultShrinkPerSecond_envBubble;
         Vector3 new_scale = new(parent.localScale.x - rate, parent.localScale.y - rate, parent.localScale.z - rate);
         parent.localScale = new_scale;
+
+        effect.PlayShrinkEffect();
         if (health <= 0)
         {
             KillBubble();
@@ -118,6 +122,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
         Vector3 new_scale = new(parent.localScale.x + rate, parent.localScale.y + rate, parent.localScale.z + rate);
         parent.localScale = new_scale;
 
+        effect.PlayChargeEffect();
         if (health > maximumHealth_envBubble)
         {
             KillBubble();
@@ -130,6 +135,7 @@ public class EnvBubble_Behaviour : MonoBehaviour
     /// </summary>
     public void KillBubble(){
 
+        effect.PlayPopEffect();
         SoundPlayer.PlayBublePop();
         BubblePool.ResetBubble(this);
     }
