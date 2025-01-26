@@ -16,9 +16,11 @@ public class Enemy_Behaviour : MonoBehaviour
     private float attackRange_enemy; //distance allow to start attacking the target
 
 
+    [SerializeField]
     private Transform attackTarget;
     private EnvBubble_Behaviour bubble_behaviour;
     private float lastAttackTime;
+    [SerializeField]
     private bool isAttacking;
     private void Awake()
     {
@@ -71,7 +73,6 @@ public class Enemy_Behaviour : MonoBehaviour
     /// </summary>
     /// <param name="damage">Value to reduce to enemy health</param>
     public void ReceiveDamage(int damage){
-        print("enemy edamaged: " + heal_enemy);
         heal_enemy -= damage;
 
         if(heal_enemy <= 0)
@@ -98,6 +99,12 @@ public class Enemy_Behaviour : MonoBehaviour
         isAttacking = false;
         attackTarget = null;
         bubble_behaviour = null;
+
+        for(int i = 0; i < parent.childCount; i++){
+            Transform child = parent.GetChild(i);
+            child.localPosition = Vector3.zero;
+            child.rotation = Quaternion.identity;
+        }
 
     }
 

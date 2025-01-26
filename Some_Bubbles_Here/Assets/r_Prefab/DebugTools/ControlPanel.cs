@@ -37,12 +37,19 @@ public class ControlPanel : MonoBehaviour
     public int duration_weather;
 
     public WeatherType summer = WeatherType.Summer;
+    public int minInterval_summer;
+    public int maxInterval_summer;
     public float bubbleChargeUpMultiplier_summer;
 
     public WeatherType rain = WeatherType.Rain;
+    public int minInterval_rain;
+    public int maxInterval_rain;
     public float windForce_rain;
 
     public WeatherType winter = WeatherType.Winter;
+    public int minInterval_winter;
+    public int maxInterval_winter;
+    public float speedMultiplier_winter;
     //public float tbh
 
 
