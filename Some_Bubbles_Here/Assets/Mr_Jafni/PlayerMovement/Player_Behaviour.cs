@@ -9,12 +9,14 @@ public class Player_Behaviour : MonoBehaviour
     public BubbleInteraction_Manager bubbleInteraction_Manager;
     public UIInteraction_Manager uIInteraction_Manager;
     public BubbleInteraction_Manager bubbleInteraction;
+    public GetBubbleReference bubbleReference;
     public ControlPanel controlPanel;
     public Transform Cam;
-    public GameObject PlayerPrefab, Attack_range, EvBubble, HoldBubblePos;
+    public GameObject PlayerPrefab, Attack_range;
     public ParticleSystem Bubble_Attack_Effect;
     int AbilityId;
     float PlayerAngle;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +37,7 @@ public class Player_Behaviour : MonoBehaviour
         TriggerPickUpBubble();
         TriggerSpawnBubble();
         ToggleAbility(AbilityId);
-        
+
 
 
     }
@@ -185,7 +187,7 @@ public class Player_Behaviour : MonoBehaviour
                 if (uIInteraction_Manager.CoolDownOverlayPickUp.activeSelf == false)
                 {
                     uIInteraction_Manager.SetAbilityCoolDown(AbilityId);
-                    bubbleInteraction.PickUpBubble(HoldBubblePos.transform); //<-
+                    bubbleInteraction.PickUpBubble(bubbleReference.RefBubble); //<-
 
                 }
             }
